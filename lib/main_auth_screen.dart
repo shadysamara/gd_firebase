@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gd_firebase/auth_helper.dart';
 import 'package:gd_firebase/auth_provider.dart';
 import 'package:provider/provider.dart';
 
@@ -26,8 +27,9 @@ class RegisterScreen extends StatelessWidget {
           ),
           TextButton(
               onPressed: () {
-                Provider.of<AuthProvider>(context, listen: false)
-                    .forgetPassword(emailController.text);
+                AuthHelper.authHelper.registerUsingPhone();
+                // Provider.of<AuthProvider>(context, listen: false)
+                //     .forgetPassword(emailController.text);
               },
               child: Text('Forget password')),
           SizedBox(

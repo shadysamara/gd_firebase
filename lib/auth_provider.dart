@@ -24,12 +24,20 @@ class AuthProvider extends ChangeNotifier {
   }
 
   login({String email, String password}) async {
-    UserCredential x = await AuthHelper.authHelper.signIn(email, password);
-    if (x != null) {
-      RouterHelper.routerHelper.routingToSpecificWidget(HomePage());
-      // navigate to home
-    } else {
-      log('error occured');
+    try {
+      UserCredential x = await AuthHelper.authHelper.signIn(email, password);
+      if (x != null) {
+        RouterHelper.routerHelper.routingToSpecificWidget(HomePage());
+        // navigate to home
+      } else {
+        log('error occured');
+      }
+    } on FirebaseAuthException catch (e) {
+      if (e.code == 'user-not-found') {
+        print('No user found for that email.');
+      } else if (e.code == 'wrong-password') {
+        print('Wrong password provided for that user.');
+      }
     }
   }
 
