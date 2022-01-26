@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "262903338285",
+    "project_id": "go-digital-25665",
+    "storage_bucket": "go-digital-25665.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:262903338285:android:c0a95eb12a9807e5256fa4",
+        "android_client_info": {
+          "package_name": "com.example.gd_firebase"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "262903338285-ifsttpp86mk9haln5j390ae28om8mldk.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBbfgmQTbFLr8rLrv89hlxk-6wKaKiEer4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "262903338285-ifsttpp86mk9haln5j390ae28om8mldk.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
