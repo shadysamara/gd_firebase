@@ -4,14 +4,19 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:gd_firebase/Home_page.dart';
 import 'package:gd_firebase/auth_helper.dart';
+import 'package:gd_firebase/firestore/firestore_helper.dart';
+import 'package:gd_firebase/firestore/gd_user.dart';
 import 'package:gd_firebase/main_auth_screen.dart';
 import 'package:gd_firebase/router_helper.dart';
 
 class AuthProvider extends ChangeNotifier {
-  createUser({String email, String password}) async {
+  createUser(GdUser gdUser) async {
     try {
-      UserCredential x =
-          await AuthHelper.authHelper.createNewAccount(email, password);
+      UserCredential x = await AuthHelper.authHelper
+          .createNewAccount(gdUser.email, gdUser.password);
+      ////
+      gdUser.id = x.user.uid;
+      FirestoreHelper.firestoreHelper.createUser(gdUser);
       if (x != null) {
         RouterHelper.routerHelper.routingToSpecificWidget(HomePage());
         // navigate to home
