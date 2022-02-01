@@ -11,7 +11,6 @@ class AuthHelper {
       UserCredential userCredential = await firebaseAuth
           .createUserWithEmailAndPassword(email: email, password: password);
 
-      verifyEmail();
       return userCredential;
     } on FirebaseAuthException catch (e) {
       if (e.code == 'weak-password') {

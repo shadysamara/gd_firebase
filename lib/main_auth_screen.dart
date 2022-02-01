@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:gd_firebase/auth_helper.dart';
-import 'package:gd_firebase/auth_provider.dart';
-import 'package:gd_firebase/firestore/firestore_helper.dart';
-import 'package:gd_firebase/firestore/gd_user.dart';
+import 'package:gd_firebase/firestore/data/auth_helper.dart';
+import 'package:gd_firebase/firestore/providers/auth_provider.dart';
+import 'package:gd_firebase/firestore/data/firestore_helper.dart';
+import 'package:gd_firebase/firestore/models/gd_user.dart';
 import 'package:provider/provider.dart';
 
 class RegisterScreen extends StatelessWidget {
@@ -84,7 +84,6 @@ class RegisterScreen extends StatelessWidget {
                       name: 'omar',
                       password: 'qwert',
                       phone: '0592122122');
-                  FirestoreHelper.firestoreHelper.createUser(user);
                   // AuthHelper.authHelper.registerUsingPhone();
                   // Provider.of<AuthProvider>(context, listen: false)
                   //     .forgetPassword(emailController.text);
