@@ -73,4 +73,13 @@ class FirestoreHelper {
     }).toList();
     return allProducts;
   }
+
+  addProductToCart(Product product) async {
+    String myid = FirebaseAuth.instance.currentUser.uid;
+    firebaseFirestore
+        .collection('users')
+        .doc(myid)
+        .collection('cart')
+        .add(product.toMap());
+  }
 }
