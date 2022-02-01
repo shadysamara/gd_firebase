@@ -1,8 +1,11 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:gd_firebase/Home_page.dart';
-import 'package:gd_firebase/main_auth_screen.dart';
+import 'package:gd_firebase/firestore/providers/app_provider.dart';
+import 'package:gd_firebase/firestore/ui/all_products_screen.dart';
+import 'package:gd_firebase/firestore/ui/register_screen.dart';
 import 'package:gd_firebase/router_helper.dart';
+import 'package:provider/provider.dart';
 
 class SplachScreen extends StatelessWidget {
   @override
@@ -12,7 +15,8 @@ class SplachScreen extends StatelessWidget {
       if (user == null) {
         RouterHelper.routerHelper.routingToSpecificWidget(RegisterScreen());
       } else {
-        RouterHelper.routerHelper.routingToSpecificWidget(HomePage());
+        Provider.of<AppProvider>(context, listen: false).getUserFromFirebase();
+        RouterHelper.routerHelper.routingToSpecificWidget(AllProductsScreen());
       }
     });
     // TODO: implement build

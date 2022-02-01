@@ -24,6 +24,7 @@ class GdUser {
     this.address = map['address'];
     this.email = map['email'];
     this.id = map['id'];
+    this.isAdmin = map['isAdmin'] ?? false;
   }
   toMap() {
     return {

@@ -6,20 +6,17 @@ class AuthHelper {
   AuthHelper._();
   static AuthHelper authHelper = AuthHelper._();
   FirebaseAuth firebaseAuth = FirebaseAuth.instance;
-  Future<UserCredential> createNewAccount(String email, String password) async {
+  Future<String> createNewAccount(String email, String password) async {
     try {
-      UserCredential userCredential = await firebaseAuth
-          .createUserWithEmailAndPassword(email: email, password: password);
+      String enterdEmail = email;
+      String enteredPassword = password;
+      UserCredential userCredential =
+          await firebaseAuth.createUserWithEmailAndPassword(
+              email: enterdEmail, password: enteredPassword);
 
-      return userCredential;
-    } on FirebaseAuthException catch (e) {
-      if (e.code == 'weak-password') {
-        throw ('The password provided is too weak.');
-      } else if (e.code == 'email-already-in-use') {
-        throw ('The account already exists for that email.');
-      }
+      return userCredential.user.uid;
     } catch (e) {
-      print(e);
+      log(e.toString());
     }
   }
 

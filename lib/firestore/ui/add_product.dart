@@ -6,9 +6,9 @@ import 'package:gd_firebase/firestore/ui/widgets/custom_testfield.dart';
 import 'package:provider/provider.dart';
 
 class AddNewProduct extends StatelessWidget {
-  TextEditingController nameController = TextEditingController();
-  TextEditingController descriptionController = TextEditingController();
-  TextEditingController priceController = TextEditingController();
+  bool isForEdit;
+  String productId;
+  AddNewProduct({this.isForEdit = false, this.productId});
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
@@ -28,9 +28,14 @@ class AddNewProduct extends StatelessWidget {
                       provider.pickNewImage();
                     },
                     child: provider.file == null
-                        ? CircleAvatar(
-                            radius: 90,
-                          )
+                        ? provider.imageUrl == null
+                            ? CircleAvatar(
+                                radius: 90,
+                              )
+                            : CircleAvatar(
+                                radius: 90,
+                                backgroundImage:
+                                    NetworkImage(provider.imageUrl))
                         : CircleAvatar(
                             radius: 90,
                             backgroundImage: FileImage(provider.file)),
@@ -39,28 +44,31 @@ class AddNewProduct extends StatelessWidget {
                     height: 15,
                   ),
                   CustomTextfield(
-                    controller: nameController,
+                    controller: provider.nameController,
                     label: 'Name',
                   ),
                   CustomTextfield(
-                    controller: descriptionController,
+                    controller: provider.descriptionController,
                     label: 'Description',
                   ),
                   CustomTextfield(
-                    controller: priceController,
+                    controller: provider.priceController,
                     textInputType: TextInputType.number,
                     label: 'Price',
                   ),
-                  CustomButton(
-                    title: 'Add Product',
-                    function: () {
-                      Product product = Product(
-                          name: nameController.text,
-                          description: descriptionController.text,
-                          price: num.parse(priceController.text));
-                      provider.addProduct(product);
-                    },
-                  )
+                  isForEdit
+                      ? CustomButton(
+                          title: 'Edit Product',
+                          function: () {
+                            provider.editProduct(this.productId);
+                          },
+                        )
+                      : CustomButton(
+                          title: 'Add Product',
+                          function: () {
+                            provider.addProduct();
+                          },
+                        )
                 ],
               ),
             ));

@@ -11,4 +11,11 @@ class RouterHelper {
       return widget;
     }));
   }
+
+  routingToSpecificWidgetWithoutPop(Widget widget) {
+    BuildContext context = routerKey.currentState.context;
+    routerKey.currentState.push(MaterialPageRoute(builder: (context) {
+      return widget;
+    }));
+  }
 }

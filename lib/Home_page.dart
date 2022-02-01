@@ -33,7 +33,7 @@ class _HomePageState extends State<HomePage> {
         actions: [
           IconButton(
               onPressed: () {
-                Provider.of<AuthProvider>(context, listen: false).logOut();
+                // Provider.of<AuthProvider>(context, listen: false).logOut();
               },
               icon: Icon(Icons.logout))
         ],
